@@ -16,8 +16,8 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('name of the book');
-            $table->string('publication_date')->comment('publication date of the book');
-            $table->string('price')->comment('price of the book');
+//            $table->string('publication_date')->comment('publication date of the book');
+//            $table->string('price')->comment('price of the book');
             $table->string('writer')->comment('writer who write the book');
             $table->timestamps();
         });
