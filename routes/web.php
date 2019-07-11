@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('books', 'BookController');
+Route::resource('books', 'BookController')->middleware('auth','checkpermission');
 
 Auth::routes();
 
-Route::get('/home', 'BookController@index')->name('home')->middleware('auth');
+Route::get('/home', 'BookController@index')->name('home')->middleware('checkpermission','auth');

@@ -125,8 +125,19 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
-        $cur_book = Book::find($id);
-        $cur_book->delete();
-        return redirect()->back()->with('success','Xóa thành công');
+        try
+        {
+            DB::beginTransaction();
+            $cur_book = Book::find($id);
+            $cur_book->delete();
+            DB::commit();
+            return redirect()->back()->with('success','Xóa thành công');
+        }
+        catch (\Exception $e)
+        {
+            DB::rollBack();
+            return redirect()->back()->with('error',$e->getMessage());
+        }
+
     }
 }
